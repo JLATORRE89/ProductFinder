@@ -22,7 +22,7 @@ def ProductStatus( itemUrl ):
 # Write CSV file for end user consumption.
 with open('walmart.csv', 'w', newline='') as csv_file:
     csv_writer = csv.writer(csv_file)
-    csv_writer.writerow(['item name', 'item url', 'status'])
+    csv_writer.writerow(['Item', 'URL', 'Status'])
     for item in soup.find_all(class_='product-title-link line-clamp line-clamp-2 truncate-title'):
         if item.text.__contains__(SearchTerm) :
             text = item.text.replace(",", '')
