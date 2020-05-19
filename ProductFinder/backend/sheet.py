@@ -42,8 +42,6 @@ def SearchForCsv():
                 CsvFiles.append(filename)
     return CsvFiles
 
-rowCount = Files.count
-
 def ReadCsv( str ):
     content = []
     with open(str, newline='', encoding='utf-8') as f:
