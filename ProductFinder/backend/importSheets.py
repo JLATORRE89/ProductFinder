@@ -37,7 +37,8 @@ def SearchForCsv():
     return CsvFiles
 
 # Import CSV file.
-def ImportCsv( str, client ):
+def ImportCsv( str ):
+    client = AuthorizeApi()
     content = open(str, 'r').read()
     print(str)
     client.import_csv('1l3h1YMdtxWNS8_G2imsqtj562yBVjmRx36V7sY96S_w', content)
@@ -47,10 +48,11 @@ def ImportCsv( str, client ):
 
 # Clean up CSV files.
 def CleanUpFiles( Files ):
-    for item in Files:
-        os.remove(item)
-        RemoveText = "Removed file: " + item
-        print(RemoveText)
+    if any(Files):
+        for item in Files:
+            os.remove(item)
+            RemoveText = "Removed file: " + item
+            print(RemoveText)
     
 # Only call AuthorizeApi and importCSV if there are actually files to import.
 def ReadCsv( str ):
@@ -71,28 +73,27 @@ worksheet_list = sh.worksheets()
 
 data = worksheet.get_all_values()
 layoutData = worksheetLayout.get_all_values()
-UpdateCheck = ForceUpdate()
 Files = SearchForCsv()
 Result = any(Files)
+UpdateCheck = ForceUpdate()
 # Only call AuthorizeApi and importCSV if there are actually files to import.
 if UpdateCheck:
     try:
         print("Found stub file, update being forced from temp sheet.")
         worksheet = worksheet = sh.worksheet("walmart")
         worksheet.update(TempSheetProcessor())
-
     except:
         print("Error updating google sheets.")
 elif Result:
     for item in Files:
+        ImportCsv( item)
         fileName = item
         itemName = item.strip('.csv')
         try:
             worksheet = sh.add_worksheet(title=itemName, rows="100", cols="20")
         except:
             print("Worksheet already exists: {}".format(itemName))
-        content = ReadCsv(fileName)
-        worksheet = sh.worksheet(itemName)
+        worksheet = worksheet = sh.worksheet(itemName)
         worksheet.update(TempSheetProcessor())
 else:
     print('No items to import.')
