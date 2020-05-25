@@ -6,6 +6,7 @@ import csv
 
 # Input from user or service (case sensitive)
 SearchTerm = input('Enter Product to search for: ')
+SearchTerm = SearchTerm.lower()
 
 # Format and query URL with user input
 SearchSplit = SearchTerm.split(' ')
@@ -14,6 +15,7 @@ SearchMark = SearchTerm.replace(' ', '+')
 url = 'https://www.walmart.com/search/?cat_id=0&query=' + SearchMark
 print(url)
 website = requests.get(url).text
+website = website.lower()
 soup = BeautifulSoup(website, 'lxml')
 
 # process the status of a single product.
@@ -21,7 +23,18 @@ def ProductStatus( itemUrl ):
     productWebsite = requests.get(itemUrl).text
     productSoup = BeautifulSoup(productWebsite, 'lxml')
     itemStatus = productSoup.find(class_='prod-fulfillment-messaging-text')
-    return itemStatus.text
+    itemFulfillment = productSoup.find(class_='prod-fulfillment')
+    if itemFulfillment is not None:
+        itemFulfillmentText = itemFulfillment.text
+        itemFulfillmentText = itemFulfillmentText.replace("ordersArrives", "orders. Arrives")
+        itemFulfillmentText = itemFulfillmentText.replace("onlyIn", "only. In")
+    elif itemStatus is not None :
+        itemFulfillmentText = itemStatus.text
+        itemFulfillmentText = itemFulfillmentText.replace("ordersArrives", "orders. Arrives")
+        itemFulfillmentText = itemFulfillmentText.replace("onlyIn", "only. In")
+    else:
+        itemFulfillmentText = "No Shipping Data."
+    return itemFulfillmentText
 
 # Write CSV file for end user consumption.
 with open('walmart.csv', 'w', newline='') as csv_file:
