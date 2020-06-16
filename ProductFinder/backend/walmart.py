@@ -16,8 +16,6 @@ SearchSplit = SearchTerm.split(' ')
 SearchMark = SearchTerm.replace(' ', '+')
 #url = 'https://www.walmart.com/search/?page=1&ps=40&query=' + SearchMark
 url = 'https://www.walmart.com/search/?cat_id=0&query=' + SearchMark
-body = {'location-data': '55555'}
-headers = {'content-type': 'application/json'}
 
 print(url)
 
