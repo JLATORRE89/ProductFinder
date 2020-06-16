@@ -5,6 +5,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 from pprint import pprint
 import csv
 
+
 # Authorize api scopes based on creds file.
 def AuthorizeApi():
     scope = ["https://spreadsheets.google.com/feeds","https://www.googleapis.com/auth/spreadsheets","https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"]
@@ -80,13 +81,22 @@ UpdateCheck = ForceUpdate()
 if UpdateCheck:
     try:
         print("Found stub file, update being forced from temp sheet.")
-        worksheet = worksheet = sh.worksheet("walmart")
+        worksheet = sh.worksheet("walmart")
+        for item in Files:
+            ImportCsv(item)
+        fileName = item
+        itemName = item.strip('.csv')
+        try:
+            worksheet = sh.add_worksheet(title=itemName, rows="100", cols="20")
+        except:
+            print("Worksheet already exists: {}".format(itemName))
+        worksheet = sh.worksheet(itemName)
         worksheet.update(TempSheetProcessor())
     except:
         print("Error updating google sheets.")
 elif Result:
     for item in Files:
-        ImportCsv( item)
+        ImportCsv(item)
         fileName = item
         itemName = item.strip('.csv')
         try:
