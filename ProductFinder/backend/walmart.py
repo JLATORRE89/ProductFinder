@@ -1,8 +1,11 @@
 from bs4 import BeautifulSoup
 from datetime import datetime
+import json
 import urllib3
 import requests
 import csv
+import os
+
 
 # Input from user or service (case sensitive)
 SearchTerm = input('Enter Product to search for: ')
@@ -13,7 +16,11 @@ SearchSplit = SearchTerm.split(' ')
 SearchMark = SearchTerm.replace(' ', '+')
 #url = 'https://www.walmart.com/search/?page=1&ps=40&query=' + SearchMark
 url = 'https://www.walmart.com/search/?cat_id=0&query=' + SearchMark
+body = {'location-data': '55555'}
+headers = {'content-type': 'application/json'}
+
 print(url)
+
 website = requests.get(url).text
 website = website.lower()
 soup = BeautifulSoup(website, 'lxml')
@@ -28,10 +35,12 @@ def ProductStatus( itemUrl ):
         itemFulfillmentText = itemFulfillment.text
         itemFulfillmentText = itemFulfillmentText.replace("ordersArrives", "orders. Arrives")
         itemFulfillmentText = itemFulfillmentText.replace("onlyIn", "only. In")
+        itemFulfillmentText = itemFulfillmentText.replace("NextDay", "Next-Day")
     elif itemStatus is not None :
         itemFulfillmentText = itemStatus.text
         itemFulfillmentText = itemFulfillmentText.replace("ordersArrives", "orders. Arrives")
         itemFulfillmentText = itemFulfillmentText.replace("onlyIn", "only. In")
+        itemFulfillmentText = itemFulfillmentText.replace("NextDay", "Next-Day")
     else:
         itemFulfillmentText = "No Shipping Data."
     return itemFulfillmentText
@@ -49,3 +58,6 @@ with open('walmart.csv', 'w', newline='') as csv_file:
             itemStatus = ProductStatus(itemUrl)
             print(itemUrl)
             csv_writer.writerow([text, itemUrl, itemStatus, Timetamp])
+            with open("importNeeded.txt", "w+") as f:
+                f.write("An import is needed, run importSheets.py.")
+                print("Wrote Stub File.")
