@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - ProductFinder</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ProductFinder</h1>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/register">Register</a>
+            </nav>
+        </header>
+
+        <main class="auth-section">
+            <div class="auth-card">
+                <h2>Login</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+
+                    <div id="message" class="message"></div>
+
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+
+                <p class="auth-link">Don't have an account? <a href="/register">Register here</a></p>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 ProductFinder. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="/static/js/login.js"></script>
+</body>
+</html>

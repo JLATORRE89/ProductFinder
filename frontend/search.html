@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search - ProductFinder</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ProductFinder</h1>
+            <nav>
+                <span id="userInfo">Loading...</span>
+                <a href="#" id="logoutBtn">Logout</a>
+            </nav>
+        </header>
+
+        <main class="search-section">
+            <div class="search-container">
+                <h2>Search Products</h2>
+                <form id="searchForm">
+                    <div class="search-input-group">
+                        <input type="text" id="searchQuery" name="query" placeholder="Search for products..." required>
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </form>
+
+                <div id="message" class="message"></div>
+                <div id="loading" class="loading" style="display: none;">Searching...</div>
+
+                <div id="results" class="results-container"></div>
+            </div>
+
+            <div class="history-container">
+                <h3>Search History</h3>
+                <div id="history" class="history-list"></div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 ProductFinder. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="/static/js/search.js"></script>
+</body>
+</html>
