@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProductFinder</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header>
+        <h1>ProductFinder</h1>
+        <nav>
+            <a th:href="@{/login}">Login</a>
+            <a th:href="@{/register}">Register</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="welcome-section">
+            <div class="hero">
+                <h2>Find the best products on Walmart</h2>
+                <p>Search, compare, and track product availability — all in one place.</p>
+                <div class="cta-buttons">
+                    <a th:href="@{/login}" class="btn btn-primary">Login</a>
+                    <a th:href="@{/register}" class="btn btn-secondary">Create Account</a>
+                </div>
+            </div>
+
+            <div class="features">
+                <div class="feature-card">
+                    <h3>Smart Search</h3>
+                    <p>Search Walmart's catalog and get real-time product results with prices and availability.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Track History</h3>
+                    <p>Every search is saved so you can revisit past results without searching again.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Price Info</h3>
+                    <p>See current pricing and fulfillment status so you can make informed decisions.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 ProductFinder</p>
+    </footer>
+</body>
+</html>

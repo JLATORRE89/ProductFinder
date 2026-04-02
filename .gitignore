@@ -1,0 +1,92 @@
+# ============================================================
+# ProductFinder — .gitignore
+# ============================================================
+
+# ---- Java / Maven build output ----
+productfinder-java/target/
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+
+# Maven wrapper cache
+.mvn/repository/
+
+# ---- H2 database files (local data, never commit) ----
+*.mv.db
+*.trace.db
+productfinder-data*
+
+# ---- IDE files ----
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# VS Code
+.vscode/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# NetBeans
+nbproject/
+build/
+nbbuild/
+dist/
+nbdist/
+
+# ---- Python (legacy backend) ----
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+venv/
+.venv/
+env/
+.env/
+pip-log.txt
+*.egg-info/
+dist/
+build/
+
+# Python virtual environments
+Scripts/
+Lib/
+Include/
+pyvenv.cfg
+
+# ---- Environment / secrets ----
+.env
+.env.*
+!.env.example
+creds.json
+*.pem
+*.key
+
+# ---- Generated data files (legacy pipeline) ----
+walmart.csv
+importNeeded.txt
+location.db
+
+# ---- OS files ----
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+
+# ---- Logs ----
+*.log
+logs/
+
+# ---- Node / npm (if frontend tooling is ever added) ----
+node_modules/
+npm-debug.log*
+yarn-error.log*
+dist/

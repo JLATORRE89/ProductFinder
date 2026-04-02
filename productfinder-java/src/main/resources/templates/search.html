@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search — ProductFinder</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header>
+        <h1>ProductFinder</h1>
+        <div class="header-right">
+            <span id="userInfo"></span>
+            <button id="logoutBtn" class="btn btn-secondary btn-sm">Logout</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="search-section">
+
+            <!-- Left column: search form + results -->
+            <div class="search-container">
+                <h2>Search Products</h2>
+
+                <form id="searchForm">
+                    <div class="search-input-row">
+                        <input type="text" id="searchQuery"
+                               placeholder="Search Walmart (e.g. laptop, headphones)..."
+                               required maxlength="200">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </form>
+
+                <div id="message" class="message" style="display:none;"></div>
+                <div id="loading" class="loading" style="display:none;">Searching Walmart...</div>
+                <div id="results"></div>
+            </div>
+
+            <!-- Right column: search history -->
+            <div class="history-container">
+                <h2>Search History</h2>
+                <div id="history"></div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 ProductFinder</p>
+    </footer>
+
+    <script th:src="@{/js/search.js}"></script>
+</body>
+</html>

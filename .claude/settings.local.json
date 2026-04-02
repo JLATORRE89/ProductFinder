@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mvn compile:*)",
+      "Bash(java -version)",
+      "Bash(find /c /opt /usr/local -name \"mvn\")",
+      "Read(//c/Program Files/**)",
+      "Bash(git -C /c/projects/ProductFinder log --oneline -5)"
+    ]
+  }
+}
